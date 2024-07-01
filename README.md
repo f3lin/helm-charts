@@ -18,7 +18,7 @@ Nous devons créer un fichier .tgz de la chart Helm à l'emplacement racine qui 
 ```sh
 $ helm package <"dir of the chart (for example: datascientest)">  -d charts
 ```
-ou si vous estes dans le meme repertoire:
+ou si vous etes dans le meme repertoire:
 
 ```sh
 $ helm package . -d charts
