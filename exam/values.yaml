@@ -1,0 +1,39 @@
+# Values for enabling/disabling components
+pgadmin:
+  enabled: true
+
+fastapi:
+  enabled: true
+
+# Values for PostgreSQL
+postgres:
+  persistence:
+    enabled: true
+    storageClass: local-path
+    size: 10Gi
+  postgresUser: admin
+  postgresPassword: password
+  postgresDatabase: storedb
+
+# Values for Ingress and TLS
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: pgadmin.mytp.cloudns.be
+      paths: ["/"]
+      serviceName: pgadmin
+      servicePort: 80
+    - host: fastapi.mytp.cloudns.be
+      paths: ["/"]
+      serviceName: fastapi
+      servicePort: 5000
+
+# Values for cert-manager
+certManager:
+  enabled: true
+  clusterIssuer:
+    name: letsencrypt-prod
+    acmeServer: https://acme-v02.api.letsencrypt.org/directory
+    email: fall-lewis.y@datascientest.com

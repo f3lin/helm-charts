@@ -1,0 +1,35 @@
+{{- if .Values.fastapi.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-fastapi
+spec:
+  type: NodePort
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30500
+  selector:
+    app: {{ .Release.Name }}-fastapi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-fastapi
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-fastapi
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-fastapi
+    spec:
+      containers:
+        - name: fastapi
+          image: f3lin/mytestapi:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+{{- end }}

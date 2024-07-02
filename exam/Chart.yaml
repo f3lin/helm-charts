@@ -1,0 +1,4 @@
+apiVersion: v2
+name: exam
+description: A Helm chart for deploying fastapi, pgadmin, postgres, and ingress with cert-manager.
+version: 0.1.0
