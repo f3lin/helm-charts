@@ -3,7 +3,7 @@ entries:
   datascientest:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-07-02T16:45:45.896908984Z"
+    created: "2024-07-02T16:58:48.441008117Z"
     description: A Helm chart for Kubernetes
     digest: 181b3f2492a7ac2607730c84706a88d66fbcc741f8f09d452c4bcab5a205ee77
     name: datascientest
@@ -13,12 +13,13 @@ entries:
     version: 0.1.0
   exam:
   - apiVersion: v2
-    created: "2024-07-02T16:45:45.897426464Z"
+    appVersion: 1.16.0
+    created: "2024-07-02T16:58:48.441830518Z"
     description: A Helm chart for deploying fastapi, pgadmin, postgres, and ingress
       with cert-manager.
-    digest: c293688a512044e4fffc9262988ead9798b551738c0e5aed79d2ebca41b87a7d
+    digest: 892ba267034b70d564a7bf3bd26098fc3f80bd56ba749b08e76b710ea9bf9b75
     name: exam
     urls:
     - exam-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-02T16:45:45.896378315Z"
+generated: "2024-07-02T16:58:48.440499411Z"
