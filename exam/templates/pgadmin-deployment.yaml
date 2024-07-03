@@ -1,4 +1,3 @@
-{{- if .Values.pgadmin.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,7 +7,7 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30080
+      nodePort: {{ .Values.pgadmin.nodePort }}
   selector:
     app: {{ .Release.Name }}-pgadmin
 ---
@@ -20,7 +19,7 @@ spec:
   selector:
     matchLabels:
       app: {{ .Release.Name }}-pgadmin
-  replicas: 1
+  replicas: {{ .Values.pgadmin.replicaCount }}
   template:
     metadata:
       labels:
@@ -28,12 +27,11 @@ spec:
     spec:
       containers:
         - name: pgadmin
-          image: dpage/pgadmin4
+          image: {{ .Values.pgadmin.image }}
           ports:
             - containerPort: 80
           env:
             - name: PGADMIN_DEFAULT_EMAIL
-              value: "admin@admin.com"
+              value: {{ .Values.pgadmin.email }}
             - name: PGADMIN_DEFAULT_PASSWORD
-              value: "root"
-{{- end }}
+              value: {{ .Values.pgadmin.password }}

@@ -1,27 +1,29 @@
-{{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-exam-ingress
+  name: {{ .Release.Name }}-rancher-ingress
   annotations:
-    cert-manager.io/cluster-issuer: {{ .Values.ingress.annotations.cert-manager.io/cluster-issuer }}
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.certIssuer }}
 spec:
-  ingressClassName: traefik
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
   tls:
-    - secretName: tls-secret
+    - secretName: {{ .Values.ingress.tlsSecretName }}
       hosts:
-{{ toYaml .Values.ingress.hosts | indent 8 }}
+        {{- range .Values.ingress.hosts }}
+        - {{ . }}
+        {{- end }}
   rules:
-{{- range .Values.ingress.hosts }}
-    - host: {{ .host }}
+    {{- range $host, $paths := .Values.ingress.rules }}
+    - host: {{ $host }}
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          {{- range $paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ .serviceName }}
+                name: {{ $.Release.Name }}-{{ .serviceName }}
                 port:
                   number: {{ .servicePort }}
-{{- end }}
-{{- end }}
+          {{- end }}
+    {{- end }}

@@ -1,8 +1,0 @@
-replicaCount: 1
-image:
-  repository: "wordpress"
-  tag: "latest"
-  pullPolicy: IfNotPresent
-service:
-  type: NodePort
-  port: 80
