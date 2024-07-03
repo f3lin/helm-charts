@@ -3,12 +3,12 @@ entries:
   exam:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-07-03T18:52:14.612182519Z"
+    created: "2024-07-03T19:01:19.537611657Z"
     description: A Helm chart for Kubernetes
     digest: 73cb4484363c4dfe2aeda59961fb412155a5bfd5bea76ee15d2b8c8f310b2303
     name: exam
     type: application
     urls:
-    - https://f3lin.github.io/helm-charts/exam-0.1.0.tgz
+    - https://f3lin.github.io/helm-charts/charts/exam-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-03T18:52:14.608361815Z"
+generated: "2024-07-03T19:01:19.534784336Z"
